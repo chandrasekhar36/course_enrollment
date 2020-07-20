@@ -1,1 +1,1 @@
-web: gunicorn 'get_app()'
+web: gunicorn 'main:get_app()'
