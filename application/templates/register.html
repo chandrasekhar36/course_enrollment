@@ -1,0 +1,34 @@
+
+    {% extends "layout.html" %}
+
+    {% block main %}
+    <style media="screen">
+      .error-msg{
+        color: red;
+      }
+    </style>
+    <h2>{{title}}</h2>
+
+    <div class="row">
+        <div class="col-md-6 offset-md-3">
+          <form name="register" action="/register" method="post">
+            {{form.hidden_tag()}}
+            {% for field in form %}
+            {% if field.type == 'SubmitField' %}
+            <p>
+              {{field()}}
+            </p>
+            {% else %}
+            <p>
+              {{field.label}}
+              {{field()}}
+              {% for i in field.errors %}
+                <span class="error-msg">{{i}}</span>
+              {% endfor %}
+            </p>
+            {% endif %}
+            {% endfor %}
+          </form>
+        </div>
+    </div>
+    {% endblock %}

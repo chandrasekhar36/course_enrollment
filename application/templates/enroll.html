@@ -1,0 +1,34 @@
+{% extends "layout.html" %}
+
+
+{% block main %}
+<h2>{{title}}</h2><br><br>
+<div>
+  <!-- Construct the rest of courses here -->
+
+  {% if not courseData %}
+    <h4>Hey, You Haven't register in any course Yet</h4>
+
+  {% else %}
+    <table class="table table-hover">
+        <thead>
+        <tr>
+            <th scope="col">Course ID</th>
+            <th scope="col">Title</th>
+            <th scope="col">Term</th>
+        </tr>
+        </thead>
+        <tbody>
+          {% for data in courseData %}
+          <tr>
+            <td scope='row'>{{ data.r2["courseID"] }}</td>
+            <td>{{ data.r2["title"] }}</td>
+            <td>{{ data.r2["term"] }}</td>
+          </tr>
+          {% endfor %}
+
+        </tbody>
+  {% endif %}
+    </table>
+</div>
+{% endblock %}
