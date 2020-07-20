@@ -1,1 +1,1 @@
-web: gunicorn 'application:main.py'
+web: gunicorn 'get_app()'
