@@ -17,7 +17,7 @@ class GetAll(Resource):
         user=User(user_id=data['user_id'],first_name=data['first_name'],last_name=data['last_name'],email=data['email'])
         user.set_password(data['password'])
         user.save()
-        return "User_id "+str(data['user_id'])+" added succeesfully as per your request"
+        return "Courses added succeesfully as per your request"
 
 
 
@@ -42,6 +42,7 @@ class GetSelected(Resource):
 @app.route('/')
 @app.route('/home')
 def index():
+    print(session)
     if session.get('user_id')==None:
         home=False
     else:
@@ -72,6 +73,7 @@ def login():
             flash(f'hey {user.first_name}, Welcome to your dashboard','success')
             session['user_id']=user.user_id
             session['user_name']=user.first_name
+            print(session)
             return redirect('/home')
         else:
             flash("Sorry! Something went wrong","danger")
