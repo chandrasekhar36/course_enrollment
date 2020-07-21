@@ -6,8 +6,19 @@ import json
 from flask_restplus import Resource
 
 
+@app.route('/')
+@app.route('/home')
+def index():
+    print(session)
+    if session.get('user_id')==None:
+        home=False
+    else:
+        home=True
+    return render_template('index.html',login=home)#"<h1>hey!, how do you do</h1>"
+
+
 ##########API################
-@api.route('/api')
+@api.route('/api',doc=False)
 class GetAll(Resource):
     def get(self):
         return jsonify(User.objects.all())
@@ -21,7 +32,7 @@ class GetAll(Resource):
 
 
 
-@api.route('/api/<id>')
+@api.route('/api/<id>',doc=False)
 class GetSelected(Resource):
     def get(self,id):
         return jsonify(User.objects(user_id=id))
@@ -39,15 +50,6 @@ class GetSelected(Resource):
 
 
 #############API##############
-@app.route('/')
-@app.route('/home')
-def index():
-    print(session)
-    if session.get('user_id')==None:
-        home=False
-    else:
-        home=True
-    return render_template('index.html',login=home)#"<h1>hey!, how do you do</h1>"
 
 
 @app.route('/courses/')

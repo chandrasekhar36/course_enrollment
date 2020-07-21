@@ -6,7 +6,7 @@ werkzeug.cached_property = werkzeug.utils.cached_property
 from flask_restplus import Api
 
 
-api=Api()
+api=Api(prefix='/api-1/',doc='/here')
 
 app=Flask(__name__)
 
